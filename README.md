@@ -3,8 +3,9 @@
 Astro + Tailwind CSS v4, static output. Built from `/workspace/roxys/build-script.md`.
 
 - **Pages:** `/` (Home), `/events`, `/photos`, `/visit`, `/404`
-- **Demo hosting:** GitHub Pages project site at `/roxys-restobar/` (see `.github/workflows/deploy.yml`, which also rebuilds daily).
-  For a custom domain set `SITE_URL` and `BASE_PATH=/` (see `netlify.toml`).
+- **Demo hosting:** Vercel project `roxys-restobar` (team MDP solo), production URL https://roxys-restobar.vercel.app (`vercel.json`).
+  For a custom domain set `SITE_URL` (see `netlify.toml` for a Netlify alternative).
+  Note: past events hide at build time, so set up a daily rebuild (Vercel deploy hook + cron) once the site is git-linked.
 - Yellow dashed `[PLACEHOLDER - ...]` boxes are intentional: they are open questions for the business.
   `npm run build` shows them; `npm run build:launch` fails until every one is resolved.
 
@@ -28,7 +29,7 @@ npm run dev            # local dev
 npm run build          # demo build (placeholders visible)
 npm run build:launch   # fails while any PLACEHOLDER remains
 node --experimental-strip-types qa/hours-test.mjs   # Open-now logic (Chicago time, after midnight, DST)
-cd qa && node shoot.mjs && node interact.mjs        # screenshots, layout, interactions, axe (needs `npm run preview` on :4410)
+cd qa && node shoot.mjs && node interact.mjs        # screenshots, layout, interactions, axe (needs `npm run preview -- --port 4410`; set QA_BASE for another host)
 ```
 
 ## Open questions for the business (Section 15 of the build script)

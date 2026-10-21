@@ -1,6 +1,6 @@
 // QA: render every page at 390px and 1440px, check overflow, broken images, H1 count, console errors.
 import { chromium } from 'playwright';
-const base = process.env.QA_BASE ?? 'http://127.0.0.1:4410/roxys-restobar';
+const base = process.env.QA_BASE ?? 'http://127.0.0.1:4410';
 const out = new URL('.', import.meta.url).pathname;
 const pages = ['', 'events', 'photos', 'visit', '404'];
 const browser = await chromium.launch({ executablePath: process.env.CHROME ?? '/usr/bin/google-chrome', args: ['--no-sandbox'] });

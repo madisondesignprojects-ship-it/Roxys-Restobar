@@ -1,7 +1,7 @@
 // QA: interaction + axe checks on the built site.
 import { chromium } from 'playwright';
 import { AxeBuilder } from '@axe-core/playwright';
-const base = process.env.QA_BASE ?? 'http://127.0.0.1:4410/roxys-restobar';
+const base = process.env.QA_BASE ?? 'http://127.0.0.1:4410';
 const browser = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args: ['--no-sandbox'] });
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, timezoneId: 'America/Chicago' });
 const page = await ctx.newPage();
