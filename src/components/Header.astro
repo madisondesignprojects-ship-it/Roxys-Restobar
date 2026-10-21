@@ -20,7 +20,7 @@ const nav = [{ href: '/events', label: 'Events', key: 'events' }, { href: '/phot
       </ul>
     </nav>
     <div class="flex items-center gap-2.5">
-      <OpenNowBadge compact />
+      <OpenNowBadge compact class="max-[359px]:hidden" />
       <a href={site.directions} target="_blank" rel="noopener" class="btn btn-primary btn-sm hidden lg:inline-flex"><Icon name="navigation" size={18} />Get Directions<span class="sr-only"> (opens in new tab)</span></a>
       <a href={`tel:${site.tel}`} class="hidden h-11 w-11 items-center justify-center rounded-full border border-night-3 text-cream hover:border-lavender lg:inline-flex" aria-label={`Call ${site.phone}`}><Icon name="phone" size={20} /></a>
       <button type="button" class="inline-flex h-12 w-12 items-center justify-center rounded-full text-cream hover:bg-night-3 lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-open><Icon name="menu" size={26} /></button>
