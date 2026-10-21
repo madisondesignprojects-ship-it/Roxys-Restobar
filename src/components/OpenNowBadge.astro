@@ -1,0 +1,11 @@
+---
+// 7.4: live open/closed state in America/Chicago. Stays on "See hours" until site.json hoursConfirmed = true.
+import { site, u } from '../lib/site';
+interface Props { compact?: boolean; class?: string }
+const { compact = false, class: cls = '' } = Astro.props;
+---
+<a href={u('/visit#hours')} class={`open-badge inline-flex items-center gap-2 rounded-full border border-night-3 bg-night/70 px-3 py-1.5 text-sm font-black text-cream no-underline backdrop-blur ${compact ? 'min-h-[44px]' : 'min-h-[40px]'} ${cls}`}
+  data-open-badge data-confirmed={String(site.hoursConfirmed)} data-hours={JSON.stringify(site.hours)} data-compact={String(compact)}>
+  <span class="h-2.5 w-2.5 rounded-full bg-muted" data-dot aria-hidden="true"></span>
+  <span data-text>{site.hoursConfirmed ? 'Hours' : 'See hours'}</span>
+</a>

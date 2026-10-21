@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../lib/site';
+---
+<div class="relative h-[320px] overflow-hidden rounded-[14px] border border-night-3 bg-night-2 md:h-[420px]" data-map data-src={site.mapEmbed} data-title="Map to Roxy's Restobar, 208 W Main St, Stoughton">
+  <div class="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 text-center" data-map-card>
+    <div class="banner-texture opacity-20" aria-hidden="true"></div>
+    <span class="relative inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-roxy-purple text-white shadow-[var(--shadow-glow)]"><Icon name="map-pin" size={30} /></span>
+    <p class="relative font-black text-cream">{site.address.street}<br />{site.address.city}, {site.address.state} {site.address.zip}</p>
+    <p class="relative text-sm text-muted">Plus code: {site.plusCode.split(' ')[0]}</p>
+    <div class="relative flex flex-wrap justify-center gap-3">
+      <button type="button" class="btn btn-outline btn-sm" data-map-load><Icon name="map" size={18} />Show map</button>
+      <a href={site.directions} target="_blank" rel="noopener" class="btn btn-primary btn-sm"><Icon name="navigation" size={18} />Get Directions<span class="sr-only"> (opens in new tab)</span></a>
+    </div>
+    <p class="relative text-xs text-muted">The map loads from Google when you tap "Show map".</p>
+  </div>
+</div>

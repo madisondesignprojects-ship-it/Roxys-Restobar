@@ -1,0 +1,19 @@
+[
+  { "file": "website/carousel-01-karaoke-crowd-at-bar.jpg", "alt": "Crowd gathered around the neon-lit bar at Roxy's Restobar", "source": "website", "approved": true },
+  { "file": "website/carousel-02-orange-cocktail-with-cherry.jpg", "alt": "Orange cocktail with a cherry and orange slice on the bar", "source": "website", "approved": true },
+  { "file": "website/carousel-03-musician-on-hand-drum.jpg", "alt": "Musician playing a hand drum by the front window", "source": "website", "approved": true },
+  { "file": "website/carousel-04-bar-counter-neon-band-playing.jpg", "alt": "Neon-lit bar counter with a band playing in the back", "source": "website", "approved": true },
+  { "file": "website/carousel-05-beer-incoming-call-sidewalk-sign-main-st.jpg", "alt": "Sidewalk chalkboard sign reading \"Incoming Call BEER\" on Main Street", "source": "website", "approved": true },
+  { "file": "website/carousel-06-acoustic-band-purple-light.jpg", "alt": "Acoustic band performing under purple lights", "source": "website", "approved": true },
+  { "file": "website/carousel-07-band-red-stage-light.jpg", "alt": "Band playing under red stage lights", "source": "website", "approved": true },
+  { "file": "google-maps/gmaps-01-vinyl-records-closeup.jpg", "alt": "Close-up of vintage vinyl records", "source": "google-maps", "approved": false },
+  { "file": "google-maps/gmaps-02-bar-interior-string-lights.jpg", "alt": "Bar interior with string lights and the vinyl-record bar top", "source": "google-maps", "approved": false },
+  { "file": "google-maps/gmaps-03-vintage-poster-wall-behind-bar.jpg", "alt": "Wall of vintage posters behind the bar", "source": "google-maps", "approved": false },
+  { "file": "google-maps/gmaps-04-back-bar-neon-cropped.png", "alt": "Back bar glowing with purple neon", "source": "google-maps", "approved": false, "note": "cropped from gmaps-04-back-bar-neon-screenshot.png (Google UI bar removed)" },
+  { "file": "google-maps/gmaps-05-cocktail-on-vinyl-record-bartop.jpg", "alt": "Drink with a straw on the vinyl-record bar top", "source": "google-maps", "approved": false },
+  { "file": "google-maps/gmaps-06-vinyl-record-bartop.jpg", "alt": "Bar top inlaid with colorful vinyl records", "source": "google-maps", "approved": false },
+  { "file": "google-maps/gmaps-07-building-exterior-at-dusk.jpg", "alt": "Roxy's building on Main Street at dusk", "source": "google-maps", "approved": false },
+  { "file": "google-maps/gmaps-08-vinyl-record-bartop-closeup.jpg", "alt": "Close-up of record labels set into the bar top", "source": "google-maps", "approved": false },
+  { "file": "google-maps/gmaps-09-dice-cup-on-bartop.jpg", "alt": "Dice cup and dice on the bar", "source": "google-maps", "approved": false },
+  { "file": "google-maps/gmaps-10-cupcakes-tray.jpg", "alt": "Tray of decorated cupcakes", "source": "google-maps", "approved": false }
+]

@@ -1,0 +1,9 @@
+[
+  { "title": "Open Mic",        "dateText": "August 31",    "original": "Open Mic- August 31",        "type": "open-mic",   "date": "[PLACEHOLDER - year?]" },
+  { "title": "Material Boys",   "dateText": "September 6",  "original": "Material Boys- September 6",  "type": "live-music", "date": "[PLACEHOLDER - year?]" },
+  { "title": "Sea Shanty Sing", "dateText": "September 13", "original": "Sea Shanty Sing- September 13", "type": "sing-along", "date": "[PLACEHOLDER - year?]" },
+  { "title": "Open Mic",        "dateText": "September 14", "original": "Open Mic- September 14",     "type": "open-mic",   "date": "[PLACEHOLDER - year?]" },
+  { "title": "Open Mic",        "dateText": "September 28", "original": "Open Mic- September 28",     "type": "open-mic",   "date": "[PLACEHOLDER - year?]" },
+  { "title": "Wild Violets",    "dateText": "October 1",    "original": "Wild Violets- October 1",    "type": "live-music", "date": "[PLACEHOLDER - year?]" },
+  { "title": "DJ Just!ne",      "dateText": "October 28",   "original": "DJ Just!ne- October 28",     "type": "dj",         "date": "[PLACEHOLDER - year?]" }
+]

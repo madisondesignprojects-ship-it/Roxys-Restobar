@@ -1,0 +1,25 @@
+---
+// The old site's "Music Events" list, VERBATIM ("Title- Date"). Year unknown, so it's shown as past/recent.
+import Placeholder from './Placeholder.astro';
+import { events, TYPE_LABELS } from '../lib/site';
+interface Props { strip?: boolean }
+const { strip = false } = Astro.props;
+---
+{strip ? (
+  <div>
+    <p class="eyebrow text-muted">Recent events</p>
+    <ul class="mt-3 flex flex-wrap gap-2">
+      {events.map((e) => <li class="rounded-full border border-night-3 bg-night-2/60 px-3.5 py-1.5 text-sm text-muted">{e.original}</li>)}
+    </ul>
+    <Placeholder class="mt-3" note={events[0].date.replace(/^\[|\]$/g, '') + ' (these dates are from the old site and have no year)'} />
+  </div>
+) : (
+  <ul class="divide-y divide-night-3 rounded-[var(--radius-card)] border border-night-3 bg-night-2">
+    {events.map((e) => (
+      <li class="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
+        <span class="font-bold text-cream">{e.original}</span>
+        <span class={`tag tag-${TYPE_LABELS[e.type].tone}`}>{TYPE_LABELS[e.type].label}</span>
+      </li>
+    ))}
+  </ul>
+)}

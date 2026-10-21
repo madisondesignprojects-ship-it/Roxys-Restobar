@@ -1,0 +1,16 @@
+---
+import { site, DAY_NAMES, fmtTime } from '../lib/site';
+interface Props { compact?: boolean; class?: string }
+const { compact = false, class: cls = '' } = Astro.props;
+---
+<table class={`hours-table w-full text-left ${compact ? 'text-sm' : ''} ${cls}`} data-hours-table>
+  <caption class="sr-only">Opening hours</caption>
+  <tbody>
+    {site.hours.map((h) => (
+      <tr data-day={h.day} class="border-b border-night-3/60 last:border-0 [&.is-today]:bg-night-3 [&.is-today]:shadow-[inset_4px_0_0_var(--color-vinyl-orange)]">
+        <th scope="row" class={`font-bold ${compact ? 'py-1.5 pl-2' : 'py-2.5 pl-3'}`}>{compact ? DAY_NAMES[h.day].slice(0, 3) : DAY_NAMES[h.day]}<span class="today-label sr-only"></span></th>
+        <td class={`text-right tabular-nums text-muted ${compact ? 'py-1.5 pr-2' : 'py-2.5 pr-3'}`}>{fmtTime(h.open)}–{fmtTime(h.close)}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>

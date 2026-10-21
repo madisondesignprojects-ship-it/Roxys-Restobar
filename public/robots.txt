@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://madisondesignprojects-ship-it.github.io/roxys-restobar/sitemap-index.xml

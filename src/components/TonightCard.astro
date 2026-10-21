@@ -1,0 +1,37 @@
+---
+// 7.5: today's or the next event from events.json (dated only) + weekly.json (confirmed only).
+// Server-rendered at build time, then refreshed in the browser in America/Chicago time.
+import Icon from './Icon.astro';
+import { site, datedEvents, confirmedWeekly, TYPE_LABELS, fmtTime, u } from '../lib/site';
+import { nextItem } from '../lib/time';
+const items = [
+  ...confirmedWeekly.map((w) => ({ kind: 'weekly', day: w.day, title: w.title, label: w.label, type: w.type, time: w.time })),
+  ...datedEvents.map((e: any) => ({ kind: 'dated', date: e.date, title: e.title, label: '', type: e.type, time: e.time ?? '' })),
+].map((i) => ({ ...i, tag: TYPE_LABELS[i.type]?.label ?? '', timeText: i.time ? fmtTime(i.time) : '' }));
+const n = nextItem(items);
+const first = n?.item;
+---
+<div class="card relative overflow-hidden p-5 shadow-[var(--shadow-glow)] md:p-7" data-tonight data-items={JSON.stringify(items)}>
+  {first ? (
+    <div class="flex items-center gap-4 md:gap-6">
+      <div class="flex w-20 shrink-0 flex-col items-center justify-center rounded-2xl bg-vinyl-orange py-3 text-night">
+        <span class="eyebrow" data-t-dow>{n!.dow}</span>
+        <span class="font-display text-3xl leading-none" data-t-num>{n!.num}</span>
+      </div>
+      <div class="min-w-0 flex-1">
+        <p class="eyebrow text-vinyl-orange" data-t-when>{n!.when}</p>
+        <h2 class="!font-sans !text-2xl font-black text-cream md:!text-3xl" data-t-title>{first.title}</h2>
+        <p class="mt-1 flex flex-wrap items-center gap-2 text-muted">
+          <span class="tag tag-gold" data-t-label>{first.label}</span>
+        </p>
+      </div>
+      <a href={u('/events')} class="link-arrow hidden md:inline-flex">All events <Icon name="arrow-right" size={18} /></a>
+    </div>
+  ) : (
+    <div>
+      <p class="eyebrow text-vinyl-orange">This week</p>
+      <p class="mt-1 text-xl font-black text-cream">Follow us on Facebook for this week's lineup</p>
+      <a href={site.facebook} target="_blank" rel="noopener" class="btn btn-primary mt-3"><Icon name="facebook" size={20} />Follow on Facebook<span class="sr-only"> (opens in new tab)</span></a>
+    </div>
+  )}
+</div>

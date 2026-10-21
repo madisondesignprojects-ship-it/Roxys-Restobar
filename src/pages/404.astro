@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VinylDivider from '../components/VinylDivider.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { u } from '../lib/site';
+---
+<BaseLayout title="Page not found | Roxy's Restobar" description="That page doesn't exist. Head back to Roxy's Restobar." path="/404" current="" noindex>
+  <section class="section">
+    <div class="container-x flex flex-col items-center text-center">
+      <VinylDivider skip />
+      <h1 class="mt-6 text-cream">This track skipped.</h1>
+      <Placeholder class="mt-4" note="copy approval" />
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href={u('/')} class="btn btn-primary">Home</a>
+        <a href={u('/events')} class="btn btn-outline">Events</a>
+        <a href={u('/visit')} class="btn btn-outline">Visit</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

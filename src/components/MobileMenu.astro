@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+import Wordmark from './Wordmark.astro';
+import HoursTable from './HoursTable.astro';
+import { site, u } from '../lib/site';
+interface Props { current: string }
+const { current } = Astro.props;
+const links = [{ href: '/', label: 'Home', key: 'home' }, { href: '/events', label: 'Events', key: 'events' }, { href: '/photos', label: 'Photos', key: 'photos' }, { href: '/visit', label: 'Visit', key: 'visit' }];
+---
+<div id="mobile-menu" class="fixed inset-0 z-50 hidden overflow-y-auto bg-night lg:hidden" role="dialog" aria-modal="true" aria-label="Menu" data-menu>
+  <div class="banner-texture opacity-15" aria-hidden="true"></div>
+  <div class="relative container-x flex h-16 items-center justify-between">
+    <Wordmark />
+    <button type="button" class="inline-flex h-12 w-12 items-center justify-center rounded-full text-cream hover:bg-night-3" aria-label="Close menu" data-menu-close><Icon name="x" size={28} /></button>
+  </div>
+  <nav aria-label="Mobile" class="relative container-x pt-4">
+    <ul>
+      {links.map((l) => (
+        <li><a href={u(l.href)} aria-current={current === l.key ? 'page' : undefined} class={`flex min-h-[60px] items-center border-b border-night-3 font-display text-3xl no-underline ${current === l.key ? 'text-lavender' : 'text-cream'}`}>{l.label}</a></li>
+      ))}
+    </ul>
+    <div class="mt-6 grid gap-3">
+      <a href={`tel:${site.tel}`} class="btn btn-primary min-h-[56px]"><Icon name="phone" size={20} />Call {site.phone}</a>
+      <a href={site.directions} target="_blank" rel="noopener" class="btn btn-outline min-h-[56px]"><Icon name="navigation" size={20} />Get Directions<span class="sr-only"> (opens in new tab)</span></a>
+      <a href={site.facebook} target="_blank" rel="noopener" class="btn btn-outline min-h-[56px]"><Icon name="facebook" size={20} />Facebook<span class="sr-only"> (opens in new tab)</span></a>
+    </div>
+    <div class="card mt-6 mb-10 p-3">
+      <p class="eyebrow px-2 pb-2 text-muted">Hours</p>
+      <HoursTable compact />
+    </div>
+  </nav>
+</div>

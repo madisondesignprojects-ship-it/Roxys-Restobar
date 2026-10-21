@@ -1,0 +1,39 @@
+---
+// 7.7: CSS-grid masonry; tiles are buttons opening the <dialog> lightbox. Google listing photos render
+// only when photos.json "approved" is true (photo permission, Section 0 #5).
+import { getImage } from 'astro:assets';
+import Img from './Img.astro';
+import Icon from './Icon.astro';
+import { photos } from '../lib/site';
+import { img } from '../lib/images';
+const shown = photos.filter((p) => p.approved);
+const tiles = await Promise.all(shown.map(async (p) => {
+  const meta = img(p.file);
+  const full = await getImage({ src: meta, width: Math.min(1600, meta.width), format: 'webp' });
+  const ratio = meta.width / meta.height;
+  return { ...p, full: full.src, shape: ratio < 0.85 ? 'portrait' : ratio > 1.25 ? 'landscape' : 'square' };
+}));
+---
+<div class="grid auto-rows-[160px] grid-cols-2 gap-3 [grid-auto-flow:dense] md:auto-rows-[190px] md:grid-cols-3 lg:grid-cols-4">
+  {tiles.map((t) => (
+    <button type="button" data-tile data-full={t.full} data-alt={t.alt}
+      class={`group relative overflow-hidden rounded-[14px] border border-night-3 bg-night-2 focus-visible:outline-offset-2 ${t.shape === 'portrait' ? 'row-span-2' : ''} ${t.shape === 'landscape' ? 'md:col-span-2' : ''}`}>
+      <Img src={t.file} alt={t.alt} sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw" widths={[400, 800]} class="photo h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" pictureClass="block h-full" />
+      <span class="sr-only">Open photo: {t.alt}</span>
+    </button>
+  ))}
+</div>
+<dialog data-lightbox class="m-auto h-dvh max-h-none w-screen max-w-none bg-night/95 p-0 text-cream backdrop:bg-black/80" aria-label="Photo viewer">
+  <div class="flex h-full flex-col">
+    <div class="flex items-center justify-between p-3">
+      <p class="eyebrow text-muted" data-lb-count aria-live="polite"></p>
+      <button type="button" data-lb-close class="inline-flex h-12 w-12 items-center justify-center rounded-full hover:bg-night-3" aria-label="Close photo viewer"><Icon name="x" size={28} /></button>
+    </div>
+    <div class="relative flex min-h-0 flex-1 items-center justify-center px-2">
+      <img data-lb-img alt="" class="max-h-full max-w-full rounded-[14px] object-contain" />
+      <button type="button" data-lb-prev class="absolute left-2 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-night-2/80 hover:bg-night-3" aria-label="Previous photo"><Icon name="chevron-left" size={28} /></button>
+      <button type="button" data-lb-next class="absolute right-2 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-night-2/80 hover:bg-night-3" aria-label="Next photo"><Icon name="chevron-right" size={28} /></button>
+    </div>
+    <p data-lb-cap class="p-4 text-center text-muted"></p>
+  </div>
+</dialog>

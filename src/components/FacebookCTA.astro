@@ -1,0 +1,26 @@
+---
+// 7.10: replaces the old 32px icon + "Like Us for Updates" (heading VERBATIM).
+import Icon from './Icon.astro';
+import Img from './Img.astro';
+import Placeholder from './Placeholder.astro';
+import { site } from '../lib/site';
+interface Props { showArt?: boolean; class?: string }
+const { showArt = true, class: cls = '' } = Astro.props;
+---
+<div class={`card relative overflow-hidden p-6 md:p-8 ${cls}`}>
+  <div class="banner-texture opacity-10" aria-hidden="true"></div>
+  <div class="relative flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+    {showArt && (
+      <div class="w-32 shrink-0 sm:w-36">
+        <Img src="facebook/facebook-profile-picture.jpg" alt="Illustrated Roxy's logo art with a beer, cornhole boards and a dartboard" sizes="144px" widths={[400]} class="aspect-square w-full rounded-full border-4 border-night-3 object-cover" />
+      </div>
+    )}
+    <div class="flex-1">
+      <p class="eyebrow text-lavender">Follow along</p>
+      <h2 class="mt-1 text-cream">Like Us for Updates</h2>
+      <p class="mt-2 text-muted">Holiday hours and early openings are posted on Facebook.</p>
+      <a href={site.facebook} target="_blank" rel="noopener" class="btn btn-primary mt-4"><Icon name="facebook" size={20} />Follow Roxy's on Facebook<span class="sr-only"> (opens in new tab)</span></a>
+      {showArt && <Placeholder class="mt-4" note="official logo file? (Facebook art may be seasonal)" />}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+# For the real launch on a custom domain (build script 4). Root-hosted, so BASE_PATH is "/".
+[build]
+  command = "npm run build:launch"
+  publish = "dist"
+[build.environment]
+  NODE_VERSION = "22"
+  BASE_PATH = "/"
+  SITE_URL = "https://[PLACEHOLDER domain]"

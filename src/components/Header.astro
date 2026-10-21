@@ -1,0 +1,30 @@
+---
+import Wordmark from './Wordmark.astro';
+import OpenNowBadge from './OpenNowBadge.astro';
+import MobileMenu from './MobileMenu.astro';
+import Icon from './Icon.astro';
+import { site, u } from '../lib/site';
+interface Props { current: string }
+const { current } = Astro.props;
+const nav = [{ href: '/events', label: 'Events', key: 'events' }, { href: '/photos', label: 'Photos', key: 'photos' }, { href: '/visit', label: 'Visit', key: 'visit' }];
+---
+<header class="sticky top-0 z-40 border-b border-night-3/70 bg-night-2/92 backdrop-blur-md">
+  <div class="container-x flex h-16 items-center justify-between gap-4 lg:h-[72px]">
+    <Wordmark />
+    <nav aria-label="Main" class="hidden lg:block">
+      <ul class="flex items-center gap-8">
+        {nav.map((n) => (
+          <li><a href={u(n.href)} aria-current={current === n.key ? 'page' : undefined}
+            class={`relative inline-flex min-h-[44px] items-center font-black text-cream no-underline hover:text-lavender ${current === n.key ? 'after:absolute after:inset-x-0 after:bottom-1 after:h-[3px] after:rounded after:bg-lavender' : ''}`}>{n.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="flex items-center gap-2.5">
+      <OpenNowBadge compact />
+      <a href={site.directions} target="_blank" rel="noopener" class="btn btn-primary btn-sm hidden lg:inline-flex"><Icon name="navigation" size={18} />Get Directions<span class="sr-only"> (opens in new tab)</span></a>
+      <a href={`tel:${site.tel}`} class="hidden h-11 w-11 items-center justify-center rounded-full border border-night-3 text-cream hover:border-lavender lg:inline-flex" aria-label={`Call ${site.phone}`}><Icon name="phone" size={20} /></a>
+      <button type="button" class="inline-flex h-12 w-12 items-center justify-center rounded-full text-cream hover:bg-night-3 lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-open><Icon name="menu" size={26} /></button>
+    </div>
+  </div>
+</header>
+<MobileMenu current={current} />

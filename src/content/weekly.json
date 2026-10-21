@@ -1,0 +1,9 @@
+[
+  { "label": "Every Thursday @ 7", "title": "Chip Draw and Meat Raffle", "day": "thu", "time": "19:00", "type": "raffle", "confirmed": true, "source": "old website (verbatim)" },
+  { "label": "Monday Karaoke", "title": "Karaoke", "day": "mon", "time": "19:00", "type": "karaoke", "confirmed": false,
+    "source": "Facebook posts Sept-Oct 2026: \"Normal Monday Karaoke evening starting at 7pm sharp\"",
+    "flag": "[PLACEHOLDER - confirm Monday karaoke is weekly and its end time (one post says 7-11pm)]" },
+  { "label": "Fourth Friday", "title": "Live music", "day": "fri", "time": "18:00", "type": "live-music", "confirmed": false,
+    "source": "Facebook post 08/28/2026: \"Today's the Fourth Friday! Sarah The Red plays 6-9\"",
+    "flag": "[PLACEHOLDER - confirm Fourth Friday is a recurring series and who plays]" }
+]

@@ -1,0 +1,29 @@
+{
+  "name": "Roxy's Restobar",
+  "listingName": "Roxys Restobar",
+  "nameNote": "[PLACEHOLDER - confirm preferred spelling with business]",
+  "category": "Bar",
+  "address": { "street": "208 W Main St", "city": "Stoughton", "state": "WI", "zip": "53589" },
+  "plusCode": "WQ8H+Q6 Stoughton, Wisconsin",
+  "geo": { "lat": 42.9169677, "lng": -89.2218818 },
+  "phone": "(608) 480-7007",
+  "tel": "+16084807007",
+  "facebook": "https://www.facebook.com/roxysrestobar",
+  "maps": "https://maps.app.goo.gl/Cd694TSCr8N7S4p88",
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=Roxys+Restobar,+208+W+Main+St,+Stoughton,+WI+53589",
+  "mapEmbed": "https://www.google.com/maps?q=Roxys+Restobar,+208+W+Main+St,+Stoughton,+WI+53589&output=embed",
+  "reviews": "https://www.google.com/maps/search/?api=1&query=Roxys+Restobar+208+W+Main+St+Stoughton+WI",
+  "email": "[PLACEHOLDER - confirm with business]",
+  "tagline": "[PLACEHOLDER - business tagline]",
+  "hoursConfirmed": false,
+  "hoursNote": "[PLACEHOLDER - confirm current hours; Facebook posts mention 3 PM openings]",
+  "hours": [
+    { "day": "mon", "open": "14:00", "close": "02:00" },
+    { "day": "tue", "open": "14:00", "close": "02:00" },
+    { "day": "wed", "open": "14:00", "close": "02:00" },
+    { "day": "thu", "open": "14:00", "close": "02:00" },
+    { "day": "fri", "open": "14:00", "close": "02:00" },
+    { "day": "sat", "open": "14:00", "close": "02:30" },
+    { "day": "sun", "open": "12:00", "close": "02:30" }
+  ]
+}

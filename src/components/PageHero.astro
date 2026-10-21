@@ -1,0 +1,17 @@
+---
+import VinylDivider from './VinylDivider.astro';
+import Img from './Img.astro';
+interface Props { title: string; eyebrow?: string; image?: string; imageAlt?: string }
+const { title, eyebrow, image, imageAlt = '' } = Astro.props;
+---
+<section class="relative overflow-hidden bg-purple-deep">
+  {image && <div class="absolute inset-0"><Img src={image} alt={imageAlt} eager sizes="100vw" class="h-full w-full object-cover opacity-45" pictureClass="block h-full" /></div>}
+  <div class="banner-texture opacity-25 mix-blend-soft-light" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-night via-night/40 to-transparent" aria-hidden="true"></div>
+  <div class="relative container-x flex min-h-[220px] flex-col justify-end pb-6 pt-14 md:min-h-[300px]">
+    {eyebrow && <p class="eyebrow text-lavender">{eyebrow}</p>}
+    <h1 class="mt-1 text-cream drop-shadow-[0_2px_12px_rgb(0_0_0/.5)]">{title}</h1>
+    <slot />
+  </div>
+  <VinylDivider class="relative -mb-px" />
+</section>

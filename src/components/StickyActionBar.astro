@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+import { site, u } from '../lib/site';
+---
+<nav aria-label="Quick actions" class="sticky-bar fixed inset-x-0 bottom-0 z-30 border-t border-night-3 bg-night-2 pb-[env(safe-area-inset-bottom)] md:hidden">
+  <ul class="grid grid-cols-3">
+    <li><a href={`tel:${site.tel}`} class="flex min-h-[60px] flex-col items-center justify-center gap-0.5 text-sm font-black text-cream no-underline"><Icon name="phone" size={22} class="text-lavender" />Call</a></li>
+    <li><a href={site.directions} target="_blank" rel="noopener" class="flex min-h-[60px] flex-col items-center justify-center gap-0.5 text-sm font-black text-cream no-underline"><Icon name="navigation" size={22} class="text-lavender" />Directions<span class="sr-only"> (opens in new tab)</span></a></li>
+    <li><a href={u('/events')} class="flex min-h-[60px] flex-col items-center justify-center gap-0.5 text-sm font-black text-cream no-underline"><Icon name="calendar" size={22} class="text-lavender" />Events</a></li>
+  </ul>
+</nav>

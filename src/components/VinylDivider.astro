@@ -1,0 +1,15 @@
+---
+interface Props { color?: string; class?: string; skip?: boolean }
+const { color = '#E8833A', class: cls = '', skip = false } = Astro.props;
+---
+<div class={`flex justify-center overflow-hidden ${cls}`} aria-hidden="true">
+  <svg viewBox="0 0 240 120" class={`h-16 w-32 md:h-20 md:w-40 ${skip ? 'rotate-[18deg]' : ''}`}>
+    <defs><clipPath id="half"><rect x="0" y="0" width="240" height="120" /></clipPath></defs>
+    <g clip-path="url(#half)">
+      <circle cx="120" cy="120" r="118" fill="#0d0a12" />
+      {[104, 92, 80, 68, 56].map((r) => <circle cx="120" cy="120" r={r} fill="none" stroke="#2f2540" stroke-width="1.4" />)}
+      <path d="M40 60 A96 96 0 0 1 90 30" stroke="rgb(197 154 241 / .35)" stroke-width="3" fill="none" stroke-linecap="round" />
+      <circle cx="120" cy="120" r="40" fill={color} /><circle cx="120" cy="120" r="5" fill="#1A1326" />
+    </g>
+  </svg>
+</div>
