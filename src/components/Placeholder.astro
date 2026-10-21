@@ -1,11 +1,5 @@
 ---
-// Visible "[PLACEHOLDER]" marker (build script 0.3 / 7.13). Shown in this demo build on purpose;
-// `npm run build:launch` fails while any remain in dist/.
-import { phNote } from '../lib/site';
+// Open questions for the business. Placeholders are NOT rendered on the live site;
+// the `note` prop stays in the source as a to-do list. Find them with `rg "<Placeholder"`.
 interface Props { note: string; inline?: boolean; class?: string }
-const { note, inline = false, class: cls = '' } = Astro.props;
-const text = `[PLACEHOLDER - ${phNote(note)}]`;
 ---
-{inline
-  ? <span class={`placeholder-inline ${cls}`} data-placeholder>{text}</span>
-  : <div class={`placeholder-box ${cls}`} role="note" data-placeholder>{text}</div>}

@@ -16,7 +16,7 @@ const t = TYPE_LABELS[type] ?? { label: type, icon: 'music', tone: 'blue' };
   <div class="min-w-0">
     <span class={`tag tag-${t.tone}`}><Icon name={t.icon} size={14} />{t.label}</span>
     <h3 class="mt-2 text-cream">{title}</h3>
-    <p class="text-muted">{time ? fmtTime(time) : <Placeholder inline note="event times" />}</p>
+    {time && <p class="text-muted">{fmtTime(time)}</p>}
     {note && <p class="text-sm text-muted">{note}</p>}
   </div>
 </article>
