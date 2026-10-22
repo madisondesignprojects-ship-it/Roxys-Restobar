@@ -1,7 +1,6 @@
 ---
 // 7.6 (v2): gig-poster/setlist row. Expects a dated event (ISO date); placeholder-dated events use the Past list.
 import Icon from './Icon.astro';
-import Placeholder from './Placeholder.astro';
 import { TYPE_LABELS, fmtTime } from '../lib/site';
 interface Props { title: string; date: string; type: string; time?: string; note?: string }
 const { title, date, type, time, note } = Astro.props;
@@ -17,7 +16,8 @@ const t = TYPE_LABELS[type] ?? { label: type, icon: 'music', tone: 'blue' };
   <div class="min-w-0">
     <span class={`tag tag-${t.tone}`}><Icon name={t.icon} size={13} />{t.label}</span>
     <h3 class="mt-2 font-display text-2xl font-normal uppercase text-cream">{title}</h3>
-    <p class="mono text-sm text-muted">{time ? fmtTime(time) : <Placeholder inline note="event times" />}</p>
+    {time && <p class="mono text-sm text-muted">{fmtTime(time)}</p>}
+    {/* <Placeholder inline note="event times" /> when no time */}
     {note && <p class="text-sm text-muted">{note}</p>}
   </div>
 </article>

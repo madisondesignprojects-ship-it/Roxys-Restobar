@@ -32,7 +32,7 @@ const h = 'eyebrow text-dim';
       <ul class="mt-3 space-y-1">
         <li><a href={`tel:${site.tel}`} class="inline-flex min-h-[44px] items-center gap-2 font-semibold text-cream no-underline hover:text-lavender"><Icon name="phone" size={16} />{site.phone}</a></li>
         <li><a href={site.facebook} target="_blank" rel="noopener" class="inline-flex min-h-[44px] items-center gap-2 font-semibold text-cream no-underline hover:text-lavender"><Icon name="facebook" size={16} />Facebook<span class="sr-only"> (opens in new tab)</span></a></li>
-        <li>{isPlaceholder(site.email) ? <span class="text-sm text-muted">Email: <Placeholder inline note={site.email} /></span> : <a href={`mailto:${site.email}`}>{site.email}</a>}</li>
+        {!isPlaceholder(site.email) && <li><a href={`mailto:${site.email}`}>{site.email}</a></li>}
       </ul>
     </div>
   </div>
