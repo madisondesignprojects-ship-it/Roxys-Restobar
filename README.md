@@ -38,3 +38,20 @@ food/menu, drink list · age policy, parking, accessibility, payments/ATM, games
 logo (is the Facebook art official?) and wordmark/favicon approval · Google photo permission + original of the screenshot photo ·
 email · domain + hosting owner · tagline / about copy · permission to quote reviews · analytics? · owner self-editing (Decap CMS)? ·
 post-launch: update Google Business Profile website field, Facebook About, retire the old Google Site.
+
+## v2 design (Oct 2026)
+Late-night dive / music-bar look, same purple palette: near-black purples, sparse neon glow,
+Anton (gig-poster display) + Archivo (body) + IBM Plex Mono (details), 1-2px corners, hairline rules,
+film grain + halftone, low-key vignetted photos, setlist-style event lists, marquee "Tonight" board.
+Before/after screenshots: `qa/before/*-live.png` (v1) vs `qa/*-v2.png` (v2), side-by-side in `qa/compare/`.
+
+## Placeholders
+`<Placeholder>` notes are hidden on the live site (open questions stay in source: `rg "<Placeholder"`).
+Review build with them visible (muted dashed style): `PUBLIC_SHOW_PLACEHOLDERS=1 npm run build`.
+
+## GitHub + Vercel
+- Repo: https://github.com/madisondesignprojects-ship-it/Roxys-Restobar (branch `main`).
+- Vercel project `roxys-restobar` (team MDP solo) builds from `main` -> https://roxys-restobar.vercel.app
+- Daily rebuild: `.github/workflows/daily-rebuild.yml` POSTs the Vercel deploy hook stored in the repo
+  secret `VERCEL_DEPLOY_HOOK` at 10:15 UTC. The hook URL is never committed. Run it by hand from the Actions tab.
+- `gated/` (unapproved Google Maps photos) is gitignored and never committed or uploaded.
