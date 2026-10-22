@@ -3,10 +3,10 @@
 // the `note` prop stays in the source as a to-do list. Find them with `rg "<Placeholder"`.
 // Set PUBLIC_SHOW_PLACEHOLDERS=1 at build time to render them as muted dashed "[PLACEHOLDER - ...]" notes
 // (review builds); `npm run build:launch` still fails if any are rendered.
-import { phNote } from '../lib/site';
+import { phNote, SHOW_PH } from '../lib/site';
 interface Props { note: string; inline?: boolean; class?: string }
 const { note, inline = false, class: cls = '' } = Astro.props;
-const show = import.meta.env.PUBLIC_SHOW_PLACEHOLDERS === '1';
+const show = SHOW_PH;
 const text = `[PLACEHOLDER - ${phNote(note)}]`;
 ---
 {show && (inline

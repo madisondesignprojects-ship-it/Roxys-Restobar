@@ -1,14 +1,17 @@
 ---
 import Icon from './Icon.astro';
 import Placeholder from './Placeholder.astro';
+import { SHOW_PH } from '../lib/site';
 interface Props { icon: string; title: string; value?: string; flag?: string }
 const { icon, title, value, flag } = Astro.props;
+// No real value = the card is entirely placeholder: render nothing on the live site.
+const render = Boolean(value) || (SHOW_PH && Boolean(flag));
 ---
-<article class="border-t border-rule pt-5">
+{render && <article class="border-t border-rule pt-5">
   <div class="flex items-center gap-3">
     <Icon name={icon} size={20} class="text-lavender" />
     <h3 class="eyebrow !text-[.8rem] !font-medium text-cream">{title}</h3>
   </div>
   {value && <p class="mt-3 text-cream/90">{value}</p>}
   {flag && <Placeholder class="mt-3" note={flag} />}
-</article>
+</article>}

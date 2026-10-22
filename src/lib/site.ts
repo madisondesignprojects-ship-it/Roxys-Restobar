@@ -6,6 +6,9 @@ export { site, events, weekly, photos };
 
 export const isPlaceholder = (v: unknown) => typeof v === 'string' && v.includes('PLACEHOLDER');
 /** Strip "[PLACEHOLDER - " and "]" for display inside a <Placeholder> box. */
+// Placeholders render only in review builds (PUBLIC_SHOW_PLACEHOLDERS=1). Sections whose content is
+// entirely placeholder must check SHOW_PH and not render at all on the live site.
+export const SHOW_PH = import.meta.env.PUBLIC_SHOW_PLACEHOLDERS === '1';
 export const phNote = (v: string) => v.replace(/^\[?PLACEHOLDER\s*-?\s*/, '').replace(/\]$/, '');
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
