@@ -7,9 +7,10 @@ import { u } from '../lib/site';
 <BaseLayout title="Page not found | Roxy's Restobar" description="That page doesn't exist. Head back to Roxy's Restobar." path="/404" current="" noindex>
   <section class="section">
     <div class="container-x flex flex-col items-center text-center">
-      <VinylDivider skip />
-      <h1 class="mt-6 text-cream">This track skipped.</h1>
-      <Placeholder class="mt-4" note="copy approval" />
+      <p class="eyebrow neon">404</p>
+      <h1 class="mt-4 text-cream">This track skipped.</h1>
+      <Placeholder class="mt-5" note="copy approval" />
+      <VinylDivider skip class="mt-10 max-w-md" />
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a href={u('/')} class="btn btn-primary">Home</a>
         <a href={u('/events')} class="btn btn-outline">Events</a>

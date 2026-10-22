@@ -16,12 +16,12 @@ import { site, weekly, datedEvents, confirmedWeekly, photos, u, isPlaceholder } 
 
 const approved = (f: string) => photos.find((p) => p.file === f)?.approved === true;
 const alt = (f: string) => photos.find((p) => p.file === f)!.alt;
-// Home §5 strip: Google photos are approval-gated; fallbacks per build script 9.1.
+// Home §5 strip: Google photos are approval-gated; fallbacks per build script 9.1. Band shots lead.
 const strip = [
-  approved('google-maps/gmaps-05-cocktail-on-vinyl-record-bartop.jpg') ? 'google-maps/gmaps-05-cocktail-on-vinyl-record-bartop.jpg' : 'website/carousel-02-orange-cocktail-with-cherry.jpg',
+  'website/carousel-06-acoustic-band-purple-light.jpg',
   'website/carousel-04-bar-counter-neon-band-playing.jpg',
   approved('google-maps/gmaps-03-vintage-poster-wall-behind-bar.jpg') ? 'google-maps/gmaps-03-vintage-poster-wall-behind-bar.jpg' : 'website/carousel-07-band-red-stage-light.jpg',
-  'website/carousel-06-acoustic-band-purple-light.jpg',
+  approved('google-maps/gmaps-05-cocktail-on-vinyl-record-bartop.jpg') ? 'google-maps/gmaps-05-cocktail-on-vinyl-record-bartop.jpg' : 'website/carousel-02-orange-cocktail-with-cherry.jpg',
 ];
 const today = new Date().toISOString().slice(0, 10);
 const upcoming = datedEvents.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3);
@@ -32,23 +32,27 @@ const unconfirmed = weekly.filter((w) => !w.confirmed);
 <BaseLayout title={title} current="home" path="/"
   description="Roxy's Restobar, 208 W Main St, Stoughton, WI. Music events, open mics, Every Thursday @ 7 Chip Draw and Meat Raffle. Call (608) 480-7007.">
   <!-- Section 1: Hero -->
-  <section class="relative flex min-h-[88svh] items-end overflow-hidden lg:min-h-[78vh]">
-    <div class="absolute inset-0">
+  <section class="relative flex min-h-[88svh] items-end overflow-hidden lg:min-h-[86vh]">
+    <div class="vignette absolute inset-0">
       <Img src="website/carousel-01-karaoke-crowd-at-bar.jpg" alt="Crowd gathered around the neon-lit bar at Roxy's Restobar" eager sizes="100vw" widths={[400, 800, 1080]}
-        class="h-full w-full object-cover [object-position:50%_40%] [filter:saturate(1.05)_contrast(1.03)]" pictureClass="block h-full" />
+        class="photo h-full w-full scale-105 object-cover [object-position:50%_40%] [filter:grayscale(.2)_contrast(1.1)_brightness(.8)]" pictureClass="block h-full" />
     </div>
-    <div class="banner-texture opacity-10" aria-hidden="true"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-night via-night/70 to-night/5" aria-hidden="true"></div>
-    <div class="relative container-x pb-24 pt-28 md:pb-28">
-      <OpenNowBadge />
-      <h1 class="mt-4 text-cream drop-shadow-[0_3px_18px_rgb(0_0_0/.6)]">Roxy's Restobar</h1>
-      <p class="mt-2 text-lg font-bold text-cream/90 md:text-xl">208 W Main St · Stoughton, WI</p>
-      <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-        <a href={site.directions} target="_blank" rel="noopener" class="btn btn-primary w-full sm:w-auto"><Icon name="navigation" size={20} />Get Directions<span class="sr-only"> (opens in new tab)</span></a>
-        <a href={`tel:${site.tel}`} class="btn btn-outline w-full sm:w-auto"><Icon name="phone" size={20} />Call {site.phone}</a>
+    <div class="halftone opacity-60" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-night via-night/45 to-transparent" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-night/80 to-transparent" aria-hidden="true"></div>
+    <div class="relative container-x pb-24 pt-28 md:pb-32">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="hidden md:inline-flex"><OpenNowBadge /></span>
+        <span class="eyebrow text-muted">Bar &amp; live music</span>
       </div>
-      <a href={u('/events')} class="link-arrow mt-3">See what's on <Icon name="arrow-right" size={18} /></a>
-      {isPlaceholder(site.tagline) && <Placeholder class="mt-3 max-w-md" note="optional one-line tagline from business" />}
+      <h1 class="mt-5 max-w-[11ch] !leading-[.86] text-cream lg:!text-[9.5rem]">Roxy's <span class="neon block">Restobar</span></h1>
+      <p class="mono mt-5 text-sm uppercase tracking-[.18em] text-cream/85 md:text-base">208 W Main St · Stoughton, WI</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href={site.directions} target="_blank" rel="noopener" class="btn btn-primary w-full sm:w-auto"><Icon name="navigation" size={18} />Get Directions<span class="sr-only"> (opens in new tab)</span></a>
+        <a href={`tel:${site.tel}`} class="btn btn-outline w-full sm:w-auto"><Icon name="phone" size={18} />Call {site.phone}</a>
+      </div>
+      <a href={u('/events')} class="link-arrow mt-4">See what's on <Icon name="arrow-right" size={16} /></a>
+      {isPlaceholder(site.tagline) && <Placeholder class="mt-4 max-w-md" note="optional one-line tagline from business" />}
     </div>
   </section>
 
@@ -58,19 +62,19 @@ const unconfirmed = weekly.filter((w) => !w.confirmed);
   <!-- Section 3: Music Events -->
   <section class="section" aria-labelledby="music-events">
     <div class="container-x">
-      <div class="flex flex-wrap items-end justify-between gap-4">
-        <h2 id="music-events" class="text-music-blue-300">Music Events</h2>
-        <a href={u('/events')} class="link-arrow">See all events <Icon name="arrow-right" size={18} /></a>
+      <div class="flex flex-wrap items-end justify-between gap-4 border-b border-rule pb-5">
+        <h2 id="music-events" class="text-cream">Music <span class="text-music-blue-300">Events</span></h2>
+        <a href={u('/events')} class="link-arrow">See all events <Icon name="arrow-right" size={16} /></a>
       </div>
       {upcoming.length ? (
         <div class="mt-8 grid gap-4 md:grid-cols-3">{upcoming.map((e: any) => <EventCard {...e} />)}</div>
       ) : (
-        <div class="mt-8 grid gap-6 lg:grid-cols-[1fr_1.2fr] lg:items-start">
-          <div class="card p-6">
+        <div class="mt-10 grid gap-10 lg:grid-cols-[1fr_1.35fr] lg:gap-16">
+          <div>
             <p class="eyebrow text-vinyl-orange">This week</p>
-            <p class="mt-1 text-xl font-black text-cream">Follow us on Facebook for this week's lineup</p>
-            <a href={site.facebook} target="_blank" rel="noopener" class="btn btn-primary mt-4"><Icon name="facebook" size={20} />Follow on Facebook<span class="sr-only"> (opens in new tab)</span></a>
-            <Placeholder class="mt-4" note="current events lineup with dates and times" />
+            <p class="mt-3 font-display text-3xl uppercase leading-none text-cream md:text-4xl">Follow us on Facebook for this week's lineup</p>
+            <a href={site.facebook} target="_blank" rel="noopener" class="btn btn-primary mt-6"><Icon name="facebook" size={18} />Follow on Facebook<span class="sr-only"> (opens in new tab)</span></a>
+            <Placeholder class="mt-5" note="current events lineup with dates and times" />
           </div>
           <PastEvents strip />
         </div>
@@ -78,19 +82,17 @@ const unconfirmed = weekly.filter((w) => !w.confirmed);
     </div>
   </section>
 
-  <VinylDivider color="#F2A541" />
-
   <!-- Section 4: Every week -->
-  <section class="section" aria-labelledby="every-week">
+  <section class="section !pt-0" aria-labelledby="every-week">
     <div class="container-x">
-      <h2 id="every-week" class="text-cream">Every week</h2>
+      <div class="border-b border-rule pb-5"><h2 id="every-week" class="text-cream">Every week</h2></div>
       <div class="snap-row mt-8 md:grid md:grid-cols-3 md:overflow-visible" tabindex="0" role="region" aria-label="Weekly nights (scrolls sideways)">
         {confirmedWeekly.map((w) => <WeeklyCard label={w.label} title={w.title} type={w.type} class="w-[85%] md:w-auto" />)}
         {unconfirmed.map((w) => (
-          <div class="card w-[85%] border-dashed p-6 md:w-auto">
-            <p class="eyebrow text-muted">Seen on Facebook · not yet confirmed</p>
-            <p class="mt-2 font-black text-cream">{w.label}</p>
-            <Placeholder class="mt-3" note={w.flag!} />
+          <div class="w-[85%] border border-dashed border-rule p-6 md:w-auto">
+            <p class="eyebrow text-dim">Seen on Facebook · not yet confirmed</p>
+            <p class="mt-4 font-display text-2xl uppercase text-cream/80">{w.label}</p>
+            <Placeholder class="mt-4" note={w.flag!} />
           </div>
         ))}
       </div>
@@ -98,42 +100,44 @@ const unconfirmed = weekly.filter((w) => !w.confirmed);
   </section>
 
   <!-- Section 5: The room -->
-  <section class="section bg-night-2/50" aria-labelledby="inside">
+  <section class="relative border-y border-rule bg-[#08060C] py-16 lg:py-24" aria-labelledby="inside">
     <div class="container-x">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h2 id="inside" class="text-cream">Inside Roxy's</h2>
-          <p class="mt-2 eyebrow text-lavender">Vinyl-record bar top · vintage poster wall · live music</p>
+          <p class="eyebrow text-lavender">Vinyl-record bar top · vintage poster wall · live music</p>
+          <h2 id="inside" class="mt-3 text-cream">Inside Roxy's</h2>
         </div>
-        <a href={u('/photos')} class="link-arrow">See all photos <Icon name="arrow-right" size={18} /></a>
+        <a href={u('/photos')} class="link-arrow">See all photos <Icon name="arrow-right" size={16} /></a>
       </div>
-      <Placeholder class="mt-4 max-w-2xl" note="1-2 sentences from business about the bar" />
-      <ul class="snap-row mt-8 md:grid md:grid-cols-4 md:overflow-visible" tabindex="0" aria-label="Photos from inside Roxy's (scrolls sideways)">
-        {strip.map((f) => (
-          <li class="w-[70%] md:w-auto"><Img src={f} alt={alt(f)} sizes="(min-width:768px) 25vw, 70vw" widths={[400, 800]} class="photo aspect-[3/4] w-full object-cover" /></li>
-        ))}
-      </ul>
+      <Placeholder class="mt-5 max-w-2xl" note="1-2 sentences from business about the bar" />
     </div>
+    <ul class="snap-row container-x mt-10 md:grid md:grid-cols-12 md:gap-3 md:overflow-visible" tabindex="0" aria-label="Photos from inside Roxy's (scrolls sideways)">
+      {strip.map((f, i) => (
+        <li class={`vignette w-[78%] md:w-auto ${i === 0 ? 'md:col-span-5 md:row-span-2' : i === 1 ? 'md:col-span-4 md:row-span-2' : 'md:col-span-3'}`}>
+          <Img src={f} alt={alt(f)} sizes="(min-width:768px) 40vw, 78vw" widths={[400, 800, 1200]} class={`photo w-full object-cover ${i < 2 ? 'aspect-[3/4] md:h-full md:aspect-auto' : 'aspect-[3/4] md:aspect-[4/5]'}`} pictureClass="block h-full" />
+        </li>
+      ))}
+    </ul>
   </section>
 
   <!-- Section 6: Visit -->
   <section class="section" aria-labelledby="visit" id="hours">
-    <div class="container-x grid gap-8 lg:grid-cols-2">
+    <div class="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
       <div>
-        <h2 id="visit" class="text-cream">Visit</h2>
-        <div class="card mt-6 p-3"><HoursTable /></div>
-        {!site.hoursConfirmed && <p class="mt-2 text-sm text-muted">Hours from our Google listing</p>}
+        <h2 id="visit" class="border-b border-rule pb-5 text-cream">Visit</h2>
+        <address class="mt-6 not-italic font-display text-3xl uppercase leading-none text-cream">{site.address.street}<br />{site.address.city}, {site.address.state} {site.address.zip}</address>
+        <div class="mt-6"><HoursTable /></div>
+        {!site.hoursConfirmed && <p class="mono mt-3 text-xs uppercase tracking-[.12em] text-dim">Hours from our Google listing</p>}
         {!site.hoursConfirmed && <Placeholder class="mt-3" note={site.hoursNote} />}
-        <address class="mt-6 not-italic text-lg font-bold text-cream">{site.address.street}<br />{site.address.city}, {site.address.state} {site.address.zip}</address>
-        <div class="mt-4 flex flex-wrap gap-3">
-          <a href={site.directions} target="_blank" rel="noopener" class="btn btn-primary"><Icon name="navigation" size={20} />Get Directions<span class="sr-only"> (opens in new tab)</span></a>
-          <a href={`tel:${site.tel}`} class="btn btn-outline"><Icon name="phone" size={20} />Call {site.phone}</a>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href={site.directions} target="_blank" rel="noopener" class="btn btn-primary"><Icon name="navigation" size={18} />Get Directions<span class="sr-only"> (opens in new tab)</span></a>
+          <a href={`tel:${site.tel}`} class="btn btn-outline"><Icon name="phone" size={18} />Call {site.phone}</a>
         </div>
       </div>
-      <div class="lg:pt-[72px]"><MapEmbed /></div>
+      <div class="lg:pt-[92px]"><MapEmbed /></div>
     </div>
   </section>
 
   <!-- Section 7: Facebook -->
-  <section class="pb-14 lg:pb-24"><div class="container-x"><FacebookCTA /></div></section>
+  <section class="pb-16 lg:pb-24"><div class="container-x"><FacebookCTA /></div></section>
 </BaseLayout>

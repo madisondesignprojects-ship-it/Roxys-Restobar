@@ -15,32 +15,32 @@ const heroAlt = photos.find((p) => p.file === heroImg)!.alt;
 ---
 <BaseLayout title="Hours & Directions | Roxy's Restobar, 208 W Main St, Stoughton WI" current="visit" path="/visit" og="/og/visit.jpg"
   description="Roxy's Restobar is at 208 W Main St, Stoughton, WI 53589. Hours, directions and phone: (608) 480-7007.">
-  <PageHero title="Visit Roxy's" eyebrow="208 W Main St · Stoughton, WI" image={heroImg} imageAlt={heroAlt} />
+  <PageHero title="Visit Roxy's" eyebrow="208 W Main St · Stoughton, WI" image={heroImg} imageAlt={heroAlt} pos="50% 70%" />
 
   <section class="section !pt-10" id="hours" aria-labelledby="hl">
     <div class="container-x grid gap-8 lg:grid-cols-2">
       <div>
-        <h2 id="hl" class="text-cream">Hours &amp; location</h2>
+        <h2 id="hl" class="border-b border-rule pb-5 text-cream">Hours &amp; location</h2>
         <div class="mt-4"><OpenNowBadge /></div>
-        <div class="card mt-4 p-3"><HoursTable /></div>
-        <p class="mt-2 text-sm text-muted">Hours from our Google listing. Holiday hours and early openings are posted on Facebook.</p>
+        <div class="mt-4"><HoursTable /></div>
+        <p class="mt-3 text-sm text-muted">Hours from our Google listing. Holiday hours and early openings are posted on Facebook.</p>
         {!site.hoursConfirmed && <Placeholder class="mt-3" note={site.hoursNote} />}
-        <address class="mt-6 not-italic text-lg font-bold text-cream">208 W Main St<br />Stoughton, WI 53589</address>
-        <p class="text-sm text-muted">Plus code WQ8H+Q6</p>
+        <address class="mt-8 not-italic font-display text-3xl uppercase leading-none text-cream">208 W Main St<br />Stoughton, WI 53589</address>
+        <p class="mono mt-2 text-xs uppercase tracking-[.12em] text-dim">Plus code WQ8H+Q6</p>
         <div class="mt-4 flex flex-wrap gap-3">
-          <a href={site.directions} target="_blank" rel="noopener" class="btn btn-primary"><Icon name="navigation" size={20} />Get Directions<span class="sr-only"> (opens in new tab)</span></a>
-          <a href={`tel:${site.tel}`} class="btn btn-outline"><Icon name="phone" size={20} />Call {site.phone}</a>
+          <a href={site.directions} target="_blank" rel="noopener" class="btn btn-primary"><Icon name="navigation" size={18} />Get Directions<span class="sr-only"> (opens in new tab)</span></a>
+          <a href={`tel:${site.tel}`} class="btn btn-outline"><Icon name="phone" size={18} />Call {site.phone}</a>
         </div>
         <a href={site.reviews} target="_blank" rel="noopener" class="link-arrow mt-3">See our Google reviews <Icon name="external-link" size={16} /><span class="sr-only"> (opens in new tab)</span></a>
       </div>
-      <div class="lg:pt-[72px]"><MapEmbed /></div>
+      <div class="lg:pt-[92px]"><MapEmbed /></div>
     </div>
   </section>
 
   <section class="section !pt-0" aria-labelledby="gtk">
     <div class="container-x">
       <h2 id="gtk" class="text-cream">Good to know</h2>
-      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-8 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
         <InfoCard icon="users" title="Age policy" flag="21+? minors with parents until X?" />
         <InfoCard icon="utensils" title="Food" flag="is food served? menu?" />
         <InfoCard icon="beer" title="Drinks" value="Can Beer, Bottle Beer, Full Bar, Mixed Drinks, Seltzer" flag="confirm; from a Stoughton tourism listing" />
@@ -53,5 +53,5 @@ const heroAlt = photos.find((p) => p.file === heroImg)!.alt;
     </div>
   </section>
 
-  <section class="pb-14 lg:pb-24"><div class="container-x"><FacebookCTA /></div></section>
+  <section class="pb-16 lg:pb-24"><div class="container-x"><FacebookCTA /></div></section>
 </BaseLayout>

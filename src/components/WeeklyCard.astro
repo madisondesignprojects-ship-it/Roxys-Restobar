@@ -5,11 +5,11 @@ interface Props { label: string; title: string; type: string; class?: string }
 const { label, title, type, class: cls = '' } = Astro.props;
 const t = TYPE_LABELS[type] ?? { icon: 'calendar' };
 ---
-<article class={`card card-hover relative overflow-hidden p-6 ${cls}`}>
-  <div class="absolute -right-10 -top-10 h-32 w-32 rounded-full border-[14px] border-night-3/60" aria-hidden="true"></div>
-  <span class="tag tag-gold relative">{label}</span>
-  <div class="relative mt-4 flex items-start gap-3">
-    <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-label-gold/15 text-label-gold"><Icon name={t.icon} size={26} /></span>
-    <h3 class="text-cream">{title}</h3>
+<article class={`card card-hover relative overflow-hidden p-6 md:p-7 ${cls}`}>
+  <div class="halftone opacity-50" aria-hidden="true"></div>
+  <div class="relative flex items-center justify-between gap-3">
+    <span class="eyebrow text-label-gold">{label}</span>
+    <Icon name={t.icon} size={22} class="text-dim" />
   </div>
+  <h3 class="relative mt-6 font-display text-[2.1rem] font-normal uppercase leading-[.95] text-cream">{title}</h3>
 </article>

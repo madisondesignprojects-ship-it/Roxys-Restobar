@@ -6,29 +6,29 @@ import StickyActionBar from '../components/StickyActionBar.astro';
 import SEO from '../components/SEO.astro';
 import BarSchema from '../components/BarSchema.astro';
 import { u } from '../lib/site';
-import latoWoff from '@fontsource/lato/files/lato-latin-400-normal.woff2?url';
-import sigmarWoff from '@fontsource/sigmar-one/files/sigmar-one-latin-400-normal.woff2?url';
+import archivoWoff from '@fontsource/archivo/files/archivo-latin-400-normal.woff2?url';
+import antonWoff from '@fontsource/anton/files/anton-latin-400-normal.woff2?url';
 interface Props { title: string; description: string; path: string; current: string; og?: string; noindex?: boolean }
 const { title, description, path, current, og, noindex } = Astro.props;
 ---
 <!doctype html>
-<html lang="en" style={`--banner-url: url('${u('/textures/banner.webp')}')`}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#1A1326" />
+    <meta name="theme-color" content="#0D0912" />
     <link rel="icon" href={u('/favicon.svg')} type="image/svg+xml" />
     <link rel="icon" href={u('/favicon.ico')} sizes="32x32" />
     <link rel="apple-touch-icon" href={u('/apple-touch-icon.png')} />
-    <link rel="preload" href={latoWoff} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={sigmarWoff} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={archivoWoff} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={antonWoff} as="font" type="font/woff2" crossorigin />
     <link rel="sitemap" href={u('/sitemap-index.xml')} />
     <SEO title={title} description={description} path={path} og={og} noindex={noindex} />
     <BarSchema />
     <slot name="head" />
   </head>
   <body class="min-h-screen bg-night pb-[calc(60px+env(safe-area-inset-bottom))] md:pb-0">
-    <a href="#main" class="sr-only z-[60] rounded-full bg-roxy-purple px-5 py-3 font-black text-white focus:not-sr-only focus:fixed focus:left-3 focus:top-3">Skip to main content</a>
+    <a href="#main" class="sr-only z-[60] bg-roxy-purple px-5 py-3 font-semibold text-white focus:not-sr-only focus:fixed focus:left-3 focus:top-3">Skip to main content</a>
     <Header current={current} />
     <main id="main" tabindex="-1"><slot /></main>
     <Footer />

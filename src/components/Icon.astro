@@ -9,6 +9,6 @@ const brands: Record<string, string> = {
 let svg: string = brands[name] ?? (L as any)[toPascal(name)];
 if (!svg) throw new Error(`Unknown icon ${name}`);
 svg = svg.replace(/<svg[^>]*>/, (tag) => tag.replace(/\sclass="[^"]*"/, '').replace(/\swidth="\d+"/, '').replace(/\sheight="\d+"/, ''));
-svg = svg.replace('<svg', `<svg width="${size}" height="${size}" class="${cls} shrink-0" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true" focusable="false"'}`).replace(/\n\s*/g, ' ');
+svg = svg.replace(/stroke-width="2"/, 'stroke-width="1.6"').replace('<svg', `<svg width="${size}" height="${size}" class="${cls} shrink-0" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true" focusable="false"'}`).replace(/\n\s*/g, ' ');
 ---
 <Fragment set:html={svg} />

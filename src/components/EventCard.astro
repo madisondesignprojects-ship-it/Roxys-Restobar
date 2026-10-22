@@ -1,5 +1,5 @@
 ---
-// 7.6 gig-poster card. Expects a dated event (ISO date) – placeholder-dated events use the Past list.
+// 7.6 (v2): gig-poster/setlist row. Expects a dated event (ISO date); placeholder-dated events use the Past list.
 import Icon from './Icon.astro';
 import Placeholder from './Placeholder.astro';
 import { TYPE_LABELS, fmtTime } from '../lib/site';
@@ -7,16 +7,17 @@ interface Props { title: string; date: string; type: string; time?: string; note
 const { title, date, type, time, note } = Astro.props;
 const d = new Date(date + 'T12:00:00');
 const mon = d.toLocaleDateString('en-US', { month: 'short' });
+const dow = d.toLocaleDateString('en-US', { weekday: 'short' });
 const t = TYPE_LABELS[type] ?? { label: type, icon: 'music', tone: 'blue' };
 ---
-<article class="card card-hover flex gap-4 p-4 md:p-5">
-  <div class="flex w-16 shrink-0 flex-col items-center justify-center rounded-xl border border-night-3 bg-night py-2 text-music-blue-300">
-    <span class="eyebrow">{mon}</span><span class="font-display text-3xl leading-none">{d.getDate()}</span>
+<article class="card card-hover grid grid-cols-[4.5rem_1fr] gap-4 p-4 md:p-5">
+  <div class="flex flex-col items-center justify-center border-r border-rule pr-4 text-music-blue-300">
+    <span class="eyebrow">{mon}</span><span class="font-display text-4xl leading-none text-cream">{d.getDate()}</span><span class="eyebrow text-dim">{dow}</span>
   </div>
   <div class="min-w-0">
-    <span class={`tag tag-${t.tone}`}><Icon name={t.icon} size={14} />{t.label}</span>
-    <h3 class="mt-2 text-cream">{title}</h3>
-    {time && <p class="text-muted">{fmtTime(time)}</p>}
+    <span class={`tag tag-${t.tone}`}><Icon name={t.icon} size={13} />{t.label}</span>
+    <h3 class="mt-2 font-display text-2xl font-normal uppercase text-cream">{title}</h3>
+    <p class="mono text-sm text-muted">{time ? fmtTime(time) : <Placeholder inline note="event times" />}</p>
     {note && <p class="text-sm text-muted">{note}</p>}
   </div>
 </article>

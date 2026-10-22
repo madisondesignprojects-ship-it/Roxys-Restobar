@@ -9,14 +9,14 @@ const pending = photos.filter((p) => !p.approved).length;
 ---
 <BaseLayout title="Photos | Roxy's Restobar, Stoughton WI" current="photos" path="/photos" og="/og/photos.jpg"
   description="Inside Roxy's Restobar on Main St in Stoughton: live bands, karaoke nights, the vinyl-record bar top and our neon-lit bar.">
-  <PageHero title="Photos" eyebrow="Inside Roxy's" />
+  <PageHero title="Photos" eyebrow="Inside Roxy's" image="website/carousel-04-bar-counter-neon-band-playing.jpg" imageAlt="Neon-lit bar counter with a band playing in the back" pos="50% 45%" />
   <section class="section !pt-10">
     <div class="container-x">
       <PhotoGallery />
       {pending > 0 && <Placeholder class="mt-6" note={`confirm photo permission with business (${pending} Google listing photos are built in but hidden until approved in src/content/photos.json)`} />}
       <Placeholder class="mt-3" note="business may supply captions" />
       <div class="mt-12">
-        <p class="eyebrow mb-3 text-lavender">More on Facebook</p>
+        <p class="eyebrow mb-1 text-lavender">More on Facebook</p>
         <FacebookCTA showArt={false} />
       </div>
     </div>

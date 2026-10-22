@@ -4,8 +4,8 @@ import { site, u } from '../lib/site';
 interface Props { compact?: boolean; class?: string }
 const { compact = false, class: cls = '' } = Astro.props;
 ---
-<a href={u('/visit#hours')} class={`open-badge inline-flex items-center gap-2 rounded-full border border-night-3 bg-night/70 px-3 py-1.5 text-sm font-black text-cream no-underline backdrop-blur ${compact ? 'min-h-[44px]' : 'min-h-[40px]'} ${cls}`}
+<a href={u('/visit#hours')} class={`open-badge mono inline-flex min-h-[40px] items-center gap-2 border border-rule bg-night/80 px-3 py-1.5 text-[.72rem] uppercase tracking-[.14em] text-cream no-underline backdrop-blur hover:border-neon ${compact ? 'min-h-[44px]' : ''} ${cls}`}
   data-open-badge data-confirmed={String(site.hoursConfirmed)} data-hours={JSON.stringify(site.hours)} data-compact={String(compact)}>
-  <span class="h-2.5 w-2.5 rounded-full bg-muted" data-dot aria-hidden="true"></span>
+  <span class="h-2 w-2 rounded-full bg-dim" data-dot aria-hidden="true"></span>
   <span data-text>{site.hoursConfirmed ? 'Hours' : 'See hours'}</span>
 </a>

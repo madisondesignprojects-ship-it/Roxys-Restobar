@@ -6,7 +6,7 @@ document.querySelectorAll<HTMLElement>('[data-open-badge]').forEach((el) => {
   const s = openState(JSON.parse(el.dataset.hours!));
   const dot = el.querySelector<HTMLElement>('[data-dot]')!;
   el.querySelector('[data-text]')!.textContent = s.text;
-  dot.className = 'h-2.5 w-2.5 rounded-full ' + (s.state === 'open' ? 'bg-neon-green shadow-[0_0_8px_#42AF71]' : s.state === 'soon' ? 'bg-label-gold' : 'bg-muted');
+  dot.className = 'h-2 w-2 rounded-full ' + (s.state === 'open' ? 'bg-neon-green shadow-[0_0_8px_#42AF71]' : s.state === 'soon' ? 'bg-label-gold' : 'bg-dim');
 });
 
 // Highlight today's row in hours tables (Chicago weekday; before close-after-midnight counts as the previous day).
@@ -86,7 +86,7 @@ document.querySelectorAll<HTMLElement>('[data-fb-feed]').forEach((wrap) => {
   wrap.querySelector('button')?.addEventListener('click', () => {
     const f = document.createElement('iframe');
     f.src = wrap.dataset.src!; f.title = "Roxy's Restobar latest Facebook posts"; f.loading = 'lazy';
-    f.width = '500'; f.height = '640'; f.className = 'mx-auto block w-full max-w-[500px] rounded-[14px] border-0 bg-white';
+    f.width = '500'; f.height = '640'; f.className = 'mx-auto block w-full max-w-[500px] border-0 bg-white';
     wrap.replaceChildren(f);
   });
 });

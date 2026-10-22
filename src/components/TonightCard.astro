@@ -1,5 +1,5 @@
 ---
-// 7.5: today's or the next event from events.json (dated only) + weekly.json (confirmed only).
+// 7.5 (v2, marquee board): today's or the next event from events.json (dated only) + weekly.json (confirmed only).
 // Server-rendered at build time, then refreshed in the browser in America/Chicago time.
 import Icon from './Icon.astro';
 import { site, datedEvents, confirmedWeekly, TYPE_LABELS, fmtTime, u } from '../lib/site';
@@ -11,27 +11,26 @@ const items = [
 const n = nextItem(items);
 const first = n?.item;
 ---
-<div class="card relative overflow-hidden p-5 shadow-[var(--shadow-glow)] md:p-7" data-tonight data-items={JSON.stringify(items)}>
-  {first ? (
-    <div class="flex items-center gap-4 md:gap-6">
-      <div class="flex w-20 shrink-0 flex-col items-center justify-center rounded-2xl bg-vinyl-orange py-3 text-night">
-        <span class="eyebrow" data-t-dow>{n!.dow}</span>
-        <span class="font-display text-3xl leading-none" data-t-num>{n!.num}</span>
+<div class="relative border border-neon/60 bg-[#08060C] p-1 shadow-[0_0_0_1px_rgb(13_9_18),0_0_40px_-10px_rgb(181_124_255/.6)]" data-tonight data-items={JSON.stringify(items)}>
+  <div class="border border-rule p-5 md:p-7">
+    {first ? (
+      <div class="grid items-center gap-5 md:grid-cols-[auto_1fr_auto] md:gap-8">
+        <div class="flex items-baseline gap-3 md:flex-col md:items-start md:gap-0 md:border-r md:border-rule md:pr-8">
+          <p class="eyebrow neon" data-t-when>{n!.when}</p>
+          <p class="mono text-sm uppercase tracking-[.14em] text-muted"><span data-t-dow>{n!.dow}</span> <span data-t-num>{n!.num}</span></p>
+        </div>
+        <div class="min-w-0">
+          <h2 class="!text-4xl text-cream md:!text-5xl" data-t-title>{first.title}</h2>
+          <p class="mt-2 eyebrow text-label-gold" data-t-label>{first.label}</p>
+        </div>
+        <a href={u('/events')} class="link-arrow">All events <Icon name="arrow-right" size={16} /></a>
       </div>
-      <div class="min-w-0 flex-1">
-        <p class="eyebrow text-vinyl-orange" data-t-when>{n!.when}</p>
-        <h2 class="!font-sans !text-2xl font-black text-cream md:!text-3xl" data-t-title>{first.title}</h2>
-        <p class="mt-1 flex flex-wrap items-center gap-2 text-muted">
-          <span class="tag tag-gold" data-t-label>{first.label}</span>
-        </p>
+    ) : (
+      <div>
+        <p class="eyebrow neon">This week</p>
+        <p class="mt-2 font-display text-3xl uppercase text-cream">Follow us on Facebook for this week's lineup</p>
+        <a href={site.facebook} target="_blank" rel="noopener" class="btn btn-primary mt-4"><Icon name="facebook" size={18} />Follow on Facebook<span class="sr-only"> (opens in new tab)</span></a>
       </div>
-      <a href={u('/events')} class="link-arrow hidden md:inline-flex">All events <Icon name="arrow-right" size={18} /></a>
-    </div>
-  ) : (
-    <div>
-      <p class="eyebrow text-vinyl-orange">This week</p>
-      <p class="mt-1 text-xl font-black text-cream">Follow us on Facebook for this week's lineup</p>
-      <a href={site.facebook} target="_blank" rel="noopener" class="btn btn-primary mt-3"><Icon name="facebook" size={20} />Follow on Facebook<span class="sr-only"> (opens in new tab)</span></a>
-    </div>
-  )}
+    )}
+  </div>
 </div>

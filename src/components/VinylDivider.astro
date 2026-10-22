@@ -1,15 +1,14 @@
 ---
-interface Props { color?: string; class?: string; skip?: boolean }
-const { color = '#E8833A', class: cls = '', skip = false } = Astro.props;
+// v2: a hairline rule with a small record in the middle (replaces the cartoon half-record).
+interface Props { class?: string; skip?: boolean; label?: string }
+const { class: cls = '', skip = false, label } = Astro.props;
 ---
-<div class={`flex justify-center overflow-hidden ${cls}`} aria-hidden="true">
-  <svg viewBox="0 0 240 120" class={`h-16 w-32 md:h-20 md:w-40 ${skip ? 'rotate-[18deg]' : ''}`}>
-    <defs><clipPath id="half"><rect x="0" y="0" width="240" height="120" /></clipPath></defs>
-    <g clip-path="url(#half)">
-      <circle cx="120" cy="120" r="118" fill="#0d0a12" />
-      {[104, 92, 80, 68, 56].map((r) => <circle cx="120" cy="120" r={r} fill="none" stroke="#2f2540" stroke-width="1.4" />)}
-      <path d="M40 60 A96 96 0 0 1 90 30" stroke="rgb(197 154 241 / .35)" stroke-width="3" fill="none" stroke-linecap="round" />
-      <circle cx="120" cy="120" r="40" fill={color} /><circle cx="120" cy="120" r="5" fill="#1A1326" />
-    </g>
+<div class={`container-x flex items-center gap-4 ${cls}`} aria-hidden="true">
+  <span class="rule flex-1"></span>
+  <svg viewBox="0 0 40 40" class={`h-7 w-7 shrink-0 ${skip ? 'rotate-[24deg]' : ''}`}>
+    <circle cx="20" cy="20" r="19" fill="#050307" stroke="#3A2E49" /><circle cx="20" cy="20" r="14" fill="none" stroke="#2A2036" />
+    <circle cx="20" cy="20" r="6" fill="#8252C8" />{skip && <path d="M6 9 L34 31" stroke="#C2412D" stroke-width="1.5" />}
   </svg>
+  {label && <span class="eyebrow text-dim">{label}</span>}
+  <span class="rule flex-1"></span>
 </div>

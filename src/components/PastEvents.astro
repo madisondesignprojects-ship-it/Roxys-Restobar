@@ -1,5 +1,6 @@
 ---
-// The old site's "Music Events" list, VERBATIM ("Title- Date"). Year unknown, so it's shown as past/recent.
+// The old site's "Music Events" list. Year unknown, so it's shown as past/recent.
+// strip: setlist (title …… date). Full: VERBATIM original "Title- Date" strings.
 import Placeholder from './Placeholder.astro';
 import { events, TYPE_LABELS } from '../lib/site';
 interface Props { strip?: boolean }
@@ -7,19 +8,27 @@ const { strip = false } = Astro.props;
 ---
 {strip ? (
   <div>
-    <p class="eyebrow text-muted">Recent events</p>
-    <ul class="mt-3 flex flex-wrap gap-2">
-      {events.map((e) => <li class="rounded-full border border-night-3 bg-night-2/60 px-3.5 py-1.5 text-sm text-muted">{e.original}</li>)}
-    </ul>
-    <Placeholder class="mt-3" note={events[0].date.replace(/^\[|\]$/g, '') + ' (these dates are from the old site and have no year)'} />
+    <p class="eyebrow text-dim">Recent setlist · from our old site</p>
+    <ol class="mt-4">
+      {events.map((e, i) => (
+        <li class="flex items-baseline gap-3 border-b border-rule/60 py-2.5">
+          <span class="mono w-6 shrink-0 text-xs text-dim">{String(i + 1).padStart(2, '0')}</span>
+          <span class="font-display text-xl uppercase text-cream md:text-2xl">{e.title}</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="mono shrink-0 text-xs uppercase tracking-[.12em] text-muted">{e.dateText}</span>
+        </li>
+      ))}
+    </ol>
+    <Placeholder class="mt-4" note={events[0].date.replace(/^\[|\]$/g, '') + ' (these dates are from the old site and have no year)'} />
   </div>
 ) : (
-  <ul class="divide-y divide-night-3 rounded-[var(--radius-card)] border border-night-3 bg-night-2">
-    {events.map((e) => (
-      <li class="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
-        <span class="font-bold text-cream">{e.original}</span>
+  <ol class="border-t border-rule">
+    {events.map((e, i) => (
+      <li class="flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-rule px-1 py-3">
+        <span class="mono w-6 text-xs text-dim">{String(i + 1).padStart(2, '0')}</span>
+        <span class="flex-1 font-semibold text-cream">{e.original}</span>
         <span class={`tag tag-${TYPE_LABELS[e.type].tone}`}>{TYPE_LABELS[e.type].label}</span>
       </li>
     ))}
-  </ul>
+  </ol>
 )}

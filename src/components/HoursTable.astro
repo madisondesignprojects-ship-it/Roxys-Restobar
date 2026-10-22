@@ -7,9 +7,9 @@ const { compact = false, class: cls = '' } = Astro.props;
   <caption class="sr-only">Opening hours</caption>
   <tbody>
     {site.hours.map((h) => (
-      <tr data-day={h.day} class="border-b border-night-3/60 last:border-0 [&.is-today]:bg-night-3 [&.is-today]:shadow-[inset_4px_0_0_var(--color-vinyl-orange)]">
-        <th scope="row" class={`font-bold ${compact ? 'py-1.5 pl-2' : 'py-2.5 pl-3'}`}>{compact ? DAY_NAMES[h.day].slice(0, 3) : DAY_NAMES[h.day]}<span class="today-label sr-only"></span></th>
-        <td class={`text-right tabular-nums text-muted ${compact ? 'py-1.5 pr-2' : 'py-2.5 pr-3'}`}>{fmtTime(h.open)}–{fmtTime(h.close)}</td>
+      <tr data-day={h.day} class="border-b border-rule/70 last:border-0 [&.is-today]:bg-purple-night [&.is-today]:shadow-[inset_2px_0_0_var(--color-neon)]">
+        <th scope="row" class={`font-semibold ${compact ? 'py-1.5 pl-2' : 'py-3 pl-3'}`}>{compact ? DAY_NAMES[h.day].slice(0, 3) : DAY_NAMES[h.day]}<span class="today-label sr-only"></span></th>
+        <td class={`mono text-right text-[.85em] tabular-nums text-muted ${compact ? 'py-1.5 pr-2' : 'py-3 pr-3'}`}>{fmtTime(h.open)} – {fmtTime(h.close)}</td>
       </tr>
     ))}
   </tbody>

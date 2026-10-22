@@ -26,7 +26,7 @@ if (!existsSync(P('public/textures/banner.webp'))) {
 }
 
 // Favicon: vinyl record with an "R" on the label. [PLACEHOLDER - business approval of wordmark/favicon]
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#0d0a12"/><circle cx="32" cy="32" r="26" fill="none" stroke="#2c2438" stroke-width="1.5"/><circle cx="32" cy="32" r="21" fill="none" stroke="#2c2438" stroke-width="1.5"/><circle cx="32" cy="32" r="15" fill="#E8833A"/><text x="32" y="38.5" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="17" fill="#1A1326">R</text></svg>`;
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="31" fill="#0d0a12"/><circle cx="32" cy="32" r="26" fill="none" stroke="#2c2438" stroke-width="1.5"/><circle cx="32" cy="32" r="21" fill="none" stroke="#2c2438" stroke-width="1.5"/><circle cx="32" cy="32" r="15" fill="#8252C8"/><text x="32" y="38.5" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="17" fill="#EEE7F4">R</text></svg>`;
 writeFileSync(P('public/favicon.svg'), svg);
 await sharp(Buffer.from(svg), { density: 600 }).resize(180, 180).flatten({ background: '#1A1326' }).png().toFile(P('public/apple-touch-icon.png'));
 const png32 = await sharp(Buffer.from(svg), { density: 300 }).resize(32, 32).png().toBuffer();

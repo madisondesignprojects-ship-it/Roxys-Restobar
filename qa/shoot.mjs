@@ -15,7 +15,7 @@ for (const [label, vp] of [['mobile', { width: 390, height: 844 }], ['desktop', 
     page.on('response', (r) => { if (r.status() >= 400 && !/\/404\/?$/.test(r.url())) bad.push(`${r.status()} ${r.url()}`); });
     const res = await page.goto(`${base}/${p}`, { waitUntil: 'networkidle' });
     // Force lazy images to load for full-page capture.
-    await page.evaluate(async () => { document.querySelectorAll('img[loading="lazy"]').forEach((i) => (i.loading = 'eager')); await new Promise((r) => setTimeout(r, 600)); });
+    await page.evaluate(async () => { document.querySelectorAll('img[loading="lazy"]').forEach((i) => (i.loading = 'eager')); for (let y = 0; y < document.body.scrollHeight; y += 600) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 120)); } window.scrollTo(0, 0); await new Promise((r) => setTimeout(r, 1200)); });
     await page.waitForLoadState('networkidle');
     const name = (p || 'home').replace(/\/$/, '');
     if (label === 'mobile') await page.screenshot({ path: `${out}${name}-mobile-firstscreen${SUF}.png` });
